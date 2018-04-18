@@ -3,12 +3,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const VehicleSchema = require('./vehicle')
+const LocationSchema = require('./mapItem')
+
+
 var PlatoonSchema = new Schema({
-  location: {
-    name: {type: String, required: false } ,
-    longitute: { type: String, required: true },
-    latitude: { type: String, required: true}
-  },
+  location: LocationSchema,
+  vehicles: [VehicleSchema],
   size: Number,
   speed: Number,
   id: String,

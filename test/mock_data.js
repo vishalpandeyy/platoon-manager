@@ -3,7 +3,26 @@ const platoons = [{
     name: "platoon 1",
     speed: 5,
     distance: 1,
-    location: {lat: 0.834, lan: -22.9},
+    vehicles: [{
+      id: "v1,",
+      isLead: true,
+      destination:  {
+        name: 'Cork',
+        location: {
+            type: 'Point',
+            // Place longitude first, then latitude
+            coordinate: [-8.481445310000026, 51.90528059751166]
+        }
+    }
+    }],
+    location: {
+      name: 'Toronto',
+      location: {
+          type: 'Point',
+          // Place longitude first, then latitude
+          coordinate: [-79.3968307, 43.6656976]
+      }
+  },
     size: 3
   },
   {
@@ -11,7 +30,14 @@ const platoons = [{
     name: "platoon 2",
     speed: 5,
     distance: 1,
-    location: {lat: 0.834, lan: 1.9},
+    location: {
+          name: 'Toronto',
+          location: {
+              type: 'Point',
+              // Place longitude first, then latitude
+              coordinate: [-79.3968307, 43.6656976]
+          }
+      },
     size: 3
   },
   {
@@ -19,7 +45,14 @@ const platoons = [{
     name: "platoon 3",
     speed: 5,
     distance: 1,
-    location: {lat: 1.834, lan: 1.9},
+    location: {
+      name: 'Toronto',
+      location: {
+          type: 'Point',
+          // Place longitude first, then latitude
+          coordinate: [-79.3968307, 43.6656976]
+      }
+  },
     size: 3
   }];
 

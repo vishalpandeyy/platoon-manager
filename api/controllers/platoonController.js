@@ -50,3 +50,14 @@ exports.delete_a_platoon = function(req, res) {
     res.json({ message: 'Platoon successfully deleted' });
   });
 };
+
+exports.nearbyPlatoons = (req, res) => {
+  // search nearby platoons by location
+  console.log(req.body);
+  // return all platoons
+  Platoon.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+}

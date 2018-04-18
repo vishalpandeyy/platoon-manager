@@ -24,7 +24,7 @@ before('creating a test platoon object', (done) => {
 })
 
 // Test will pass if the todo is saved
-describe("Post a new platoon", function(){
+describe("POST a new platoon", function(){
     it("should create new platoon", function(done){
         var PlatoonMock = sinon.mock(new Platoon(new_platoon));
         var platoon = PlatoonMock.object;
@@ -34,6 +34,7 @@ describe("Post a new platoon", function(){
             PlatoonMock.verify();
             PlatoonMock.restore();
             expect(result.status).to.be.true;
+            expect(result)
             done();
         });
     });
@@ -50,4 +51,10 @@ describe("Post a new platoon", function(){
             done();
         });
     });
+
+    it("should create a platoon with one vehicle as lead",  (done) => {
+        var soloPlatoon = new Platoon({
+            
+        })
+    })
 });

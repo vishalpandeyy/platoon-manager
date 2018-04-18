@@ -49,6 +49,25 @@ describe("Get all platoons", function(){
  });
 });
 
+describe("Geo Location", () => {
+    
+    describe("Saving geolocation", () => {
+        it("should save location coordinates", () => {
+            assert(false)
+        })
+    })
+
+    describe("retreive geo coordinates", () => {
+        it("should get current platoon location", () =>{
+            assert(false)
+        })
+        it("should get nearby platoons", () => {
+            assert(false)
+        })
+    })
+})
+
+
 after((done) => {
   // remove from database
   done()

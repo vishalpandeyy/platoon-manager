@@ -3,7 +3,7 @@ module.exports = function(app) {
   var platoonManager = require('../controllers/platoonController');
 
   // todoList Routes
-  app.route('/platoons')
+  app.route('/vehicles')
     .get(platoonManager.list_all_platoons)
     .post(platoonManager.create_a_platoon);
 
@@ -12,5 +12,5 @@ module.exports = function(app) {
     .put(platoonManager.update_a_platoon)
     .delete(platoonManager.delete_a_platoon);
 
-  app.route('/platoons/nearby').post(platoonManager.nearbyPlatoons)
+  app.route('/platoon/nearby').post(platoonManager.nearbyPlatoons)
 };
