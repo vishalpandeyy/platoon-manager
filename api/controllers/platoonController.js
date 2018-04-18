@@ -53,11 +53,11 @@ exports.delete_a_platoon = function(req, res) {
 
 exports.nearbyPlatoons = (req, res) => {
   // search nearby platoons by location
-  console.log(req.body);
+  res.json(req.body);
   // return all platoons
-  Platoon.find({}, function(err, task) {
-    if (err)
-      res.send(err);
-    res.json(task);
-  });
+  // Platoon.find({}, function(err, task) {
+  //   if (err)
+  //     res.send(err);
+  //   res.json(req.body);
+  // });
 }

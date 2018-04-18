@@ -12,5 +12,6 @@ module.exports = function(app) {
     .put(platoonManager.update_a_platoon)
     .delete(platoonManager.delete_a_platoon);
 
-  app.route('/platoons/nearby').post(platoonManager.nearbyPlatoons)
+  app.route('/platoons/nearby')
+    .post(platoonManager.nearbyPlatoons)
 };
