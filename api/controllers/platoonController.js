@@ -1,0 +1,52 @@
+'use strict';
+
+var mongoose = require('mongoose'),
+  Platoon = mongoose.model('Platoons');
+
+exports.list_all_platoons = function(req, res) {
+  Platoon.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
+
+exports.create_a_platoon = function(req, res) {
+  var new_platoon = new Platoon(req.body);
+  new_platoon.save(function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
+
+exports.read_a_platoon = function(req, res) {
+  Platoon.findById(req.params.taskId, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
+
+exports.update_a_platoon = function(req, res) {
+  Platoon.findOneAndUpdate({_id: req.params.platoonId}, req.body, {new: true}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(platoon);
+  });
+};
+
+
+exports.delete_a_platoon = function(req, res) {
+
+  Platoon.remove({
+    _id: req.params.taskId
+  }, function(err, platoon) {
+    if (err)
+      res.send(err);
+    res.json({ message: 'Platoon successfully deleted' });
+  });
+};
