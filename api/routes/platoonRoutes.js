@@ -14,4 +14,7 @@ module.exports = function(app) {
 
   app.route('/platoons/nearby')
     .post(platoonManager.nearbyPlatoons)
+
+  app.route('/platoon/join')
+    .post(platoonManager.addVehicleToPlatoon)
 };

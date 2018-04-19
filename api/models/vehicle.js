@@ -11,7 +11,10 @@ var VehicleSchema = new Schema({
     firebaseInstanceId: {type: String, required: true}
   });
 
+mongoose.model('Vehicles', VehicleSchema);
+
 module.exports = VehicleSchema;
 
 
 
+ 

@@ -13,6 +13,9 @@ const mapItemSchema = Schema({
         coordinates: {type: [Number], default: [0, 0]}
     }
 });
+
+LocationSchema.index({'location': '2dsphere' })
+
 module.exports = mapItemSchema;
 
 // MapItem.create({

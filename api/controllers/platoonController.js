@@ -13,6 +13,9 @@ exports.list_all_platoons = function(req, res) {
 
 
 exports.create_a_platoon = function(req, res) {
+
+  // 
+
   var new_platoon = new Platoon(req.body);
   new_platoon.save(function(err, task) {
     if (err)
@@ -60,4 +63,20 @@ exports.nearbyPlatoons = (req, res) => {
   //     res.send(err);
   //   res.json(req.body);
   // });
+
 }
+
+exports.addVehicleToPlatoon = (req, res) => {
+  // get the id of the platoon
+  // send notification to the lead of the platoon
+  // update the platoon configuration in mongodb 
+}
+
+exports.syncDynamics = (req, res) => {
+
+}
+
+exports.addVehicleToPlatoon = (req, res) => {
+
+}
+

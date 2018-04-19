@@ -8,13 +8,16 @@
     "build": "babel src -s -D -d dist --presets es2015,stage-0",
     "start": "node dist",
     "prestart": "npm run -s build",
-    "test": "mocha"
+    "test": "mocha",
+    "tdd": "nyc mocha --watch --recursive",
+    "testall":"mocha --reporter"
   },
   "dependencies": {
     "body-parser": "^1.13.3",
     "compression": "^1.5.2",
     "cors": "^2.7.1",
     "express": "^4.13.3",
+    "fcm-push": "^1.1.3",
     "google-distance": "^1.0.1",
     "mongoose": "^5.0.13",
     "mongoose-geojson-schema": "^2.1.2",
@@ -31,8 +34,10 @@
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
     "eslint": "^3.1.1",
+    "istanbul": "^0.4.5",
     "mocha": "^5.0.4",
-    "nodemon": "^1.9.2"
+    "nodemon": "^1.9.2",
+    "nyc": "^11.7.1"
   },
   "repository": {
     "type": "git",
