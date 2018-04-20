@@ -52,26 +52,20 @@ describe("Get all platoons", function(){
 describe("Geo Location", () => {
     
     describe("Saving geolocation", () => {
-        it("should save location coordinates", () => {
-            assert(false)
-        })
+        it("should save location coordinates")
     })
 
     describe("retreive geo coordinates", () => {
-        it("should get current platoon location", () =>{
-            assert(false)
-        })
-        it("should get nearby platoons", () => {
-            assert(false)
-        })
+        it("should get current platoon location")
+        it("should get nearby platoons")
     })
 })
 
 
-after((done) => {
-  // remove from database
-  done()
-})
+// after((done) => {
+//   // remove from database
+//   done()
+// })
 
 // beforeEach(function() {
 //   // runs before each test in this block

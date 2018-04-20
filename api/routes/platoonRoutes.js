@@ -17,4 +17,5 @@ module.exports = function(app) {
 
   app.route('/platoon/join')
     .post(platoonManager.addVehicleToPlatoon)
+
 };

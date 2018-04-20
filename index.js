@@ -3,7 +3,8 @@ var express = require('express'),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
   Platoon = require('./api/models/platoons'), //created model loading here
-  bodyParser = require('body-parser');
+  bodyParser = require('body-parser'),
+  PubSubFCM = require('./api/middleware/pubsub_messaging');
   
 // mongoose instance connection url connection
 require('./test/helper_test');
@@ -11,6 +12,8 @@ require('./test/helper_test');
   app.use(bodyParser.urlencoded({ extended: true }));
 
   app.use(bodyParser.json());
+
+  //app.use(PubSubFCM);
 
   var routes = require('./api/routes/platoonRoutes'); //importing route
 

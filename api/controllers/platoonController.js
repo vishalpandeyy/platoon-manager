@@ -1,7 +1,9 @@
+
 'use strict';
 
 var mongoose = require('mongoose'),
-  Platoon = mongoose.model('Platoons');
+  Platoon = mongoose.model('Platoons'),
+  notifyPlatoon = require('./messagingController')
 
 exports.list_all_platoons = function(req, res) {
   Platoon.find({}, function(err, task) {
@@ -13,9 +15,6 @@ exports.list_all_platoons = function(req, res) {
 
 
 exports.create_a_platoon = function(req, res) {
-
-  // 
-
   var new_platoon = new Platoon(req.body);
   new_platoon.save(function(err, task) {
     if (err)
@@ -69,14 +68,61 @@ exports.nearbyPlatoons = (req, res) => {
 exports.addVehicleToPlatoon = (req, res) => {
   // get the id of the platoon
   // send notification to the lead of the platoon
+
+  var config = {
+    notification: {
+      "title": "Platoon",
+      "body": "vehicle has joined"
+    },
+    data: {
+      "id":"vehicleLast",
+      "model": "tesla"
+    }
+  }
+  notifyPlatoon(config)
+
+  updatePlatoon(req.body)
+    .then(data => {
+      res.json(data);
+  }).catch(err => res.json(err))
+
+  // res.json(platoon);
   // update the platoon configuration in mongodb 
 }
 
 exports.syncDynamics = (req, res) => {
-
+  // message all vehicles
 }
 
-exports.addVehicleToPlatoon = (req, res) => {
+//------------------------------ db calls ----------------------------------------//
 
+function updatePlatoon(data) {
+  
+  return new Promise((resolve, reject) => {        
+      
+    if (data.platoonId) {
+        
+        var query = Platoon.where({id: data.platoonId})
+
+        query.select('vehicles.firebaseInstanceId size')
+
+        query.findOne((err, platoon) => {
+          
+          if (!err) {
+            
+            platoon.vehicles.push(data.vehicle)
+            platoon.save()
+            resolve(platoon)
+          }
+        
+          else {
+            console.log('rejected!!');
+            reject(err)
+          }
+        })
+      }
+      else {
+        console.warn('platood id is not sent from the requesting vehicle.');
+      }
+  })
 }
-

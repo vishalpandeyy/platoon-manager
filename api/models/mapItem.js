@@ -14,15 +14,6 @@ const mapItemSchema = Schema({
     }
 });
 
-LocationSchema.index({'location': '2dsphere' })
+mapItemSchema.index({'location': '2dsphere' })
 
 module.exports = mapItemSchema;
-
-// MapItem.create({
-//     name: 'Toronto',
-//     location: {
-//         type: 'Point',
-//         // Place longitude first, then latitude
-//         coordinate: [-79.3968307, 43.6656976]
-//     }
-// });
