@@ -65,9 +65,39 @@ exports.nearbyPlatoons = (req, res) => {
 
 }
 
+
+exports.removeVehicleFromPlatoon = (req, res) => {
+  // get the id of the platoon
+  // send notification to the lead of the platoon
+  var config = {
+    notification: {
+      "title": "Platoon",
+      "body": "A vehicle has left"
+    },
+    data: {
+      "id":"vehicleLast",
+      "model": "tesla"
+    }
+  }
+  notifyPlatoon(config)
+
+  req.body.requestType = 2;
+
+  updatePlatoon(req.body)
+    .then(data => {
+      res.json(data);
+  }).catch(err => res.json(err))
+
+  // res.json(platoon);
+  // update the platoon configuration in mongodb 
+}
+
+
 exports.addVehicleToPlatoon = (req, res) => {
   // get the id of the platoon
   // send notification to the lead of the platoon
+
+    req.body.requestType = 1;
 
   var config = {
     notification: {
@@ -90,6 +120,7 @@ exports.addVehicleToPlatoon = (req, res) => {
   // update the platoon configuration in mongodb 
 }
 
+
 exports.syncDynamics = (req, res) => {
   // message all vehicles
 }
@@ -97,9 +128,19 @@ exports.syncDynamics = (req, res) => {
 //------------------------------ db calls ----------------------------------------//
 
 function updatePlatoon(data) {
-  
+
+
   return new Promise((resolve, reject) => {        
-      
+
+    if (!data.body.requestType) {
+      reject({error: 'requestType not defined'})
+    }
+    var message = require('../shared/messsages')
+
+    let reqType = data.body.requestType
+
+    console.log(parseInt(reqType));
+    
     if (data.platoonId) {
         
         var query = Platoon.where({id: data.platoonId})
@@ -109,8 +150,17 @@ function updatePlatoon(data) {
         query.findOne((err, platoon) => {
           
           if (!err) {
-            
-            platoon.vehicles.push(data.vehicle)
+
+            switch(parseInt(reqType)){
+              case message.REQUEST_JOIN.code:
+                platoon.vehicles.push(data.vehicle)
+                break;
+
+              case message.REQUEST_EXIT.code:
+              platoon.vehicles.pop(data.vehicle)
+
+                break;
+            }
             platoon.save()
             resolve(platoon)
           }

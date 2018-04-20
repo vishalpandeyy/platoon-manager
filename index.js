@@ -13,7 +13,7 @@ require('./test/helper_test');
 
   app.use(bodyParser.json());
 
-  //app.use(PubSubFCM);
+  app.use(PubSubFCM);
 
   var routes = require('./api/routes/platoonRoutes'); //importing route
 
