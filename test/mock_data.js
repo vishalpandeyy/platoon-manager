@@ -1,59 +1,43 @@
-const platoons = [{
-    id: 1,
-    name: "platoon 1",
-    speed: 5,
-    distance: 1,
-    vehicles: [{
-      id: "v1,",
-      isLead: true,
-      destination:  {
-        name: 'Cork',
-        location: {
-            type: 'Point',
-            // Place longitude first, then latitude
-            coordinate: [-8.481445310000026, 51.90528059751166]
+const platoons = [
+  {
+    "_id": "5ad939070e289f52e02dfc55",
+    "vehicles": [
+        {
+            "_id": "5ad939070e289f52e02dfc56",
+            "id": "v2",
+            "isLead": true,
+            "firebaseInstanceId": "c8mUOSzJgvY:APA91bEl-fKpbu6YesiEey6STmOM5oB6E4EphuuSiOUNLwBOA2ZPTQnsCXcEu_uEgmjAX9VR1H1BATfPnfI602-xMFD_Xj7S2lGLF6lKW7GP4Hvn7vGj0PFwzsRxIEWH91b0TchHoepQ",
+            "destination": [
+                {
+                    "location": {
+                        "type": "Point",
+                        "coordinates": [
+                            -8.4826,
+                            51.9166
+                        ]
+                    },
+                    "_id": "5ad939070e289f52e02dfc57",
+                    "name": "Cork 2"
+                }
+            ]
         }
-    }
-    }],
-    location: {
-      name: 'Toronto',
-      location: {
-          type: 'Point',
-          // Place longitude first, then latitude
-          coordinate: [-79.3968307, 43.6656976]
-      }
-  },
-    size: 3
-  },
-  {
-    id: 2,
-    name: "platoon 2",
-    speed: 5,
-    distance: 1,
-    location: {
-          name: 'Toronto',
-          location: {
-              type: 'Point',
-              // Place longitude first, then latitude
-              coordinate: [-79.3968307, 43.6656976]
-          }
-      },
-    size: 3
-  },
-  {
-    id: 3,
-    name: "platoon 3",
-    speed: 5,
-    distance: 1,
-    location: {
-      name: 'Toronto',
-      location: {
-          type: 'Point',
-          // Place longitude first, then latitude
-          coordinate: [-79.3968307, 43.6656976]
-      }
-  },
-    size: 3
-  }];
+    ],
+    "location": {
+        "location": {
+            "type": "Point",
+            "coordinates": [
+                -79.3968307,
+                43.6656976
+            ]
+        },
+        "_id": "5ad939070e289f52e02dfc58",
+        "name": "Toronto"
+    },
+    "size": 2,
+    "speed": 30,
+    "id": "1",
+    "lead": "vehicle1",
+    "__v": 0
+}];
 
   module.exports = platoons

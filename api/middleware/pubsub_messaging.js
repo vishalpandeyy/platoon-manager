@@ -31,9 +31,8 @@ function unsubscribe(token, topic, next) {
 module.exports = function (req, res, next) {
 
     console.log(req.body.requestType);
-    var token = req.body.vehicle.firebaseInstanceId    
     if (req.body.requestType) {
-
+        var token = req.body.vehicle.firebaseInstanceId    
         switch (parseInt(req.body.requestType)) {
 
             case message.REQUEST_JOIN.code:
@@ -44,6 +43,7 @@ module.exports = function (req, res, next) {
                 subscribe(token, 'platoon_alert')
                 subscribe(token, 'platoon_sync')
                 console.log('subscribing to topics');
+                next()
                 break;
 
             case message.FAILURE_ALERT.code:

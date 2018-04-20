@@ -1,10 +1,96 @@
+
+
+process.env.NODE_ENV = 'test';
+var assert = require('assert');
+let chai = require('chai');
+let chaiHttp = require('chai-http');
+let should = chai.should();
+var sinon = require('sinon');
+var expect = chai.expect;
+var mongoose = require('mongoose');
+require('sinon-mongoose');
+
+var platoons = require('./mock_data')
+
+const host = 'http://localhost:3000';
+
+//Importing our todo model for our unit testing.
+var Platoon = require('../api/models/platoons');
 var platoonController = require('../api/controllers/platoonController')
 
+var new_platoon;
+
+before('creating a test platoon object', (done) => {    
+    var new_platoon = platoons[0]
+    console.log(new_platoon);
+    done()
+})
+
+// Test will pass if the todo is saved
+describe("POST a new platoon", function(){
+    it("should create new platoon", function(done){
+        var PlatoonMock = sinon.mock(new Platoon(new_platoon));
+        var platoon = PlatoonMock.object;
+        var expectedResult = { status: true };
+        PlatoonMock.expects('save').yields(null, expectedResult);
+        platoon.save(function (err, result) {
+            PlatoonMock.verify();
+            PlatoonMock.restore();
+            expect(result.status).to.be.true;
+            expect(result)
+            done();
+        });
+    });
+    // Test will pass if the todo is not saved
+    it("should return error, if post not saved", function(done){
+        var PlatoonMock = sinon.mock(new Platoon(new_platoon));
+        var platoon = PlatoonMock.object;
+        var expectedResult = { status: false };
+        PlatoonMock.expects('save').yields(expectedResult, null);
+        platoon.save(function (err, result) {
+            PlatoonMock.verify();
+            PlatoonMock.restore();
+            expect(err.status).to.not.be.true;
+            done();
+        });
+    });
+
+    it("should create a platoon with one vehicle as lead",  (done) => {
+        // var soloPlatoon = new Platoon(new_platoon)
+        var PlatoonMock = sinon.mock(new Platoon(new_platoon));
+        var platoon = PlatoonMock.object;
+        var expectedResult = { status: true };
+        PlatoonMock.expects('save').yields(null, expectedResult);
+        platoon.save(function (err, result) {
+            PlatoonMock.verify();
+            PlatoonMock.restore();
+            console.log(result);
+            
+            expect(result.status).to.be.true;
+            expect(result)
+            done();
+        });
+    })
+});
 // tests for all the platoon controller functions
 describe('Platoon manager', () => {
     
     describe('Create a platoon', () => {
-        it('should save a platoon in the database')
+        it('should save a platoon in the database', (done) => {
+            var PlatoonMock = sinon.mock(new Platoon(new_platoon));
+            var platoon = PlatoonMock.object;
+            var expectedResult = { status: true };
+            PlatoonMock.expects('save').yields(null, expectedResult);
+            platoon.save(function (err, result) {
+                PlatoonMock.verify();
+                PlatoonMock.restore();
+                console.log(result);
+                
+                expect(result.status).to.be.true;
+                expect(result)
+                done();
+            });
+        })
     })
 
     describe('Update platoon on a new vehicle joining', () => {

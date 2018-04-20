@@ -1,7 +1,7 @@
 
 'use strict';
-
 var mongoose = require('mongoose'),
+
   Platoon = mongoose.model('Platoons'),
   notifyPlatoon = require('./messagingController')
 
@@ -65,7 +65,6 @@ exports.nearbyPlatoons = (req, res) => {
 
 }
 
-
 exports.removeVehicleFromPlatoon = (req, res) => {
   // get the id of the platoon
   // send notification to the lead of the platoon
@@ -99,16 +98,16 @@ exports.addVehicleToPlatoon = (req, res) => {
 
     req.body.requestType = 1;
 
-  var config = {
-    notification: {
-      "title": "Platoon",
-      "body": "vehicle has joined"
-    },
-    data: {
-      "id":"vehicleLast",
-      "model": "tesla"
+    var config = {
+      notification: {
+        "title": "Platoon",
+        "body": "vehicle has joined"
+      },
+      data: {
+        "id":"vehicleLast",
+        "model": "tesla"
+      }
     }
-  }
   notifyPlatoon(config)
 
   updatePlatoon(req.body)
@@ -129,15 +128,14 @@ exports.syncDynamics = (req, res) => {
 
 function updatePlatoon(data) {
 
-
   return new Promise((resolve, reject) => {        
 
-    if (!data.body.requestType) {
+    if (!data.requestType) {
       reject({error: 'requestType not defined'})
     }
     var message = require('../shared/messsages')
 
-    let reqType = data.body.requestType
+    let reqType = data.requestType
 
     console.log(parseInt(reqType));
     
