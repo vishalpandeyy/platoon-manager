@@ -6,7 +6,9 @@ function subscribe(token, topic, next) {
 
     admin.messaging().subscribeToTopic(token, topic)
         .then(function (response) {
-            console.log("Successfully subscribed to topic:", response.errors);
+            console.log(response.results);
+            
+            console.log("Successfully subscribed to topic:", topic);
             //next()
         })
         .catch(function (error) {
@@ -19,7 +21,7 @@ function unsubscribe(token, topic, next) {
 
     admin.messaging().unsubscribeFromTopic(token, topic)
         .then(function (response) {
-            console.log("Successfully unsubscribed from topic:", response);
+            console.log("Successfully unsubscribed from topic:", topic);
             //next()
         })
         .catch(function (error) {
@@ -30,7 +32,6 @@ function unsubscribe(token, topic, next) {
 
 module.exports = function (req, res, next) {
 
-    console.log(req.body.requestType);
     if (req.body.requestType) {
         var token = req.body.vehicle.firebaseInstanceId    
         switch (parseInt(req.body.requestType)) {

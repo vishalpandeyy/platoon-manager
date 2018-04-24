@@ -6,7 +6,7 @@ module.exports = function(config) {
 
     let { notification, data } = config 
 
-    var destinationDeviceToken = 'ebI_HaSVMtU:APA91bG1BQQp7kgQ_8GAgrssZtW_wUsn6VGJnjxoH5mk4efWZYa_yeqEJ_kOfFZDYW4XaqVTlfwQMUdwbxj1GKkS7bdi82NEUZ-0Sjprb84tG6M-T_tA9X14ADSr4S-sdSQWZHXptuvg'
+    var destinationDeviceToken = 'c0I7DGolu5I:APA91bHnA2ya4ZC8xfhI2V45xOMdstfXpUkmXoI4o1YC8BAq6uPG7hrqTjL16Vdwt5on6kPM6wQNglZrN-n76eObzpfR9G_DroBKePnFWJf18okJumChVlFuzBQfSIB2tncnS50gab1i'
    
         var payload = {
             notification,
@@ -20,12 +20,12 @@ module.exports = function(config) {
 
         FcmAdmin.messaging().sendToDevice(destinationDeviceToken, payload, options)
                 .then(function(response) {
-                    console.log("Successfully sent message:", response);
+                    console.log("Successfully sent message:", response.results);
                 })
                 .catch(function(error) {
                         console.log("Error sending message:", error);
                 });
-                
+
         var sendMessageToOneDevice = (destinationDeviceToken, payload, options) => {
             FcmAdmin.messaging().sendToDevice(destinationDeviceToken, payload, options)
                 .then(function(response) {

@@ -147,6 +147,9 @@ function updatePlatoon(data) {
 
         query.findOne((err, platoon) => {
           
+          if(!platoon){
+            resolve({message: 'first platoon created'});
+          }
           if (!err) {
 
             switch(parseInt(reqType)){

@@ -25,6 +25,6 @@ require('./test/helper_test');
 
   app.listen(port);
 
-  console.log('Platooning RESTful API server started on: ' + port);
+  console.log('Platooning API server started on: ' + port);
 
   module.exports = app;
